@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
+    <title>YulBot Resizer</title>
+  </head>
+  <body class="bg-gradient-to-br from-purple-700 to-pink-700/50">
+    <div
+      class="max-w-xl m-auto h-screen flex flex-col align-center justify-center"
+    >
+      <div class="flex flex-col w-full items-center justify-center bg-grey-lighter">
+        <label
+          class="w-64 flex flex-col items-center px-4 py-7 hover:scale-105 bg-purple-400 text-white transform transform-all duration-300 font-semibold rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-400/50 tracking-wide uppercase border border-purple-500 hover:border-r-8 hover:border-purple-800 cursor-pointer hover:text-purple-800"
+        >
+          <img src="./images/logo.svg" width="32" />
+          <span class="mt-2 leading-normal">Selecione uma imagem para aplicar o Resizer</span>
+          <input id="img" type="file" class="hidden" />
+        </label>
+      </div>
+
+      <!-- Form -->
+      <form id="img-form" class="hidden">
+        <div class="mt-6">
+          <label class="mt-1 block text-white text-center font-semibold w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Largura</label>
+          <input
+            type="number"
+            name="width"
+            id="width"
+            class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+            placeholder="Largura"
+          />
+        </div>
+
+        <div class="mt-4">
+          <label class="mt-1 block text-white text-center font-semibold w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Altura</label>
+          <input
+            type="number"
+            name="height"
+            id="height"
+            class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+            placeholder="Altura"
+          />
+        </div>
+
+        <!-- Button -->
+        <div class="mt-6">
+          <button
+            type="submit"
+            class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-400 hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Resize
+          </button>
+
+      </form>
+
+      <p class="text-white text-lg text-center font-mono mt-6"><strong>Arquivo: </strong><span id="filename"></span></p>
+      <!-- Delete hardcoded path -->
+      <p class="text-white text-lg text-center font-mono mt-2"><strong>Local: </strong><span id="output-path"></span></p>
+    </div>
+  </body>
+</html>
