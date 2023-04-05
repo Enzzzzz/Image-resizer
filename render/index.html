@@ -27,7 +27,7 @@
       </div>
 
       <!-- Form -->
-      <form id="img-form" class="hidden">
+      <form id="img-form" class="">
         <div class="mt-6">
           <label class="mt-1 block text-white text-center font-semibold w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Largura</label>
           <input
@@ -50,8 +50,18 @@
           />
         </div>
 
+        <div class="flex-row">
+          <div class="mt-1 block px-4 py-4 bg-blue-600/80 w-14 scale-75 m-auto shadow-sm  rounded-md transform transform-all duration-300 border border-blue-500 hover:border-r-8 hover:border-blue-800 cursor-pointer hover:text-blue-800"
+          id="discord">
+            <a class="mt-1 flex justify-center text-center text-sm text-white font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              Discord
+            </a>
+        
+          </div>
+        </div>
+
         <!-- Button -->
-        <div class="mt-6">
+        <div class="mt-1">
           <button
             type="submit"
             class="w-80 m-auto flex justify-center py-2 px-4 bg-purple-400 text-white transform transform-all duration-300 font-semibold rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-400/50 tracking-wide uppercase border border-purple-500 hover:border-r-8 hover:border-purple-800 cursor-pointer hover:text-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -62,7 +72,6 @@
       </form>
 
       <p class="text-white text-lg text-center font-mono mt-6"><strong>Arquivo: </strong><span id="filename"></span></p>
-      <!-- Delete hardcoded path -->
       <p class="text-white text-lg text-center font-mono mt-2"><strong>Local: </strong><span id="output-path"></span></p>
     </div>
   </body>
