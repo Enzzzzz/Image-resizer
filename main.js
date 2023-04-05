@@ -1,14 +1,19 @@
 const path = require('path')
-const { app, BrowserWindow, Menu } = require('electron')
+const os = require('os')
+const fs = require('fs')
+const resizeImg = require('resize-img')
+const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron')
 
-const isDev = process.env.NODE_ENV !== 'production';
+//const isDev = process.env.NODE_ENV !== 'production';
 const isWin = process.platform === 'win32'
+
+let mainWindow
 
 //CREATE MAIN WINDOW
 function createMainWindow() {
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         title: 'Yulbot Resizer',
-        width: isDev ? 1000 : 400,
+        width: 400,
         height: 700,
         webPreferences: {
             contextIsolation: true,
@@ -19,9 +24,9 @@ function createMainWindow() {
 
     mainWindow.loadFile(path.join(__dirname, './render/index.html'));
 
-    if (isDev) {
-        mainWindow.webContents.openDevTools();
-      }
+    // if (isDev) {
+    //     mainWindow.webContents.openDevTools();
+    //   }
 }
 
 // NEW WINDOW
@@ -43,6 +48,9 @@ app.whenReady().then(() => {
     // MENU
     const mainMenu = Menu.buildFromTemplate(menu)
     Menu.setApplicationMenu(mainMenu)
+
+    //REMOVE MAINWINDOW ON CLOSE
+    mainWindow.on('closed', () => (mainWindow = null))
 
 
     app.on('activate', () => {
@@ -69,6 +77,42 @@ const menu = [
         click: createNewWindow
     }
 ]
+
+//RESPOND  IPCRENDER
+ipcMain.on('image:resize', (e, options) => {
+    options.dest = path.join(os.homedir(), 'YulbotResizer')
+    resizeImage(options)
+})
+
+//RESIZE FUNCTION
+
+async function resizeImage({ imgPath, width, height, dest }) {
+    try {
+        const newPath = await resizeImg(fs.readFileSync(imgPath), {
+            width: +width,
+            height: +height
+        })
+        //filename
+        const filename = path.basename(imgPath)
+
+        //folder
+        if (!fs.existsSync(dest)) {
+            fs.mkdirSync(dest)
+        }
+        //create new file
+        fs.writeFileSync(path.join(dest, filename), newPath)
+
+        //success msg
+        mainWindow.webContents.send('image:done')
+
+        //open dest folder
+        shell.openPath(dest)
+
+    } catch (error) {
+        console.log(error)
+        
+    }
+}
 
 app.on('window-all-closed', () => {
     if (!isWin) {
