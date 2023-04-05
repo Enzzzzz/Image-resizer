@@ -1,18 +1,27 @@
 const path = require('path')
 const { app, BrowserWindow, Menu } = require('electron')
 
-
+const isDev = process.env.NODE_ENV !== 'production';
 const isWin = process.platform === 'win32'
 
 //CREATE MAIN WINDOW
 function createMainWindow() {
     const mainWindow = new BrowserWindow({
         title: 'Yulbot Resizer',
-        width: 400,
-        height: 700
+        width: isDev ? 1000 : 400,
+        height: 700,
+        webPreferences: {
+            contextIsolation: true,
+            nodeIntegration: true,
+            preload: path.join(__dirname, './render/js/preload.js')
+        }
     })
 
     mainWindow.loadFile(path.join(__dirname, './render/index.html'));
+
+    if (isDev) {
+        mainWindow.webContents.openDevTools();
+      }
 }
 
 // NEW WINDOW
@@ -24,6 +33,7 @@ function createNewWindow() {
     })
 
     newWindow.loadFile(path.join(__dirname, './render/about.html'));
+    
 }
 
 //APP READY
