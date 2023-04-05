@@ -15,6 +15,17 @@ function createMainWindow() {
     mainWindow.loadFile(path.join(__dirname, './render/index.html'));
 }
 
+// NEW WINDOW
+function createNewWindow() {
+    const newWindow = new BrowserWindow({
+        title: 'Yulbot About',
+        width: 300,
+        height: 400
+    })
+
+    newWindow.loadFile(path.join(__dirname, './render/about.html'));
+}
+
 //APP READY
 app.whenReady().then(() => {
     createMainWindow()
@@ -42,6 +53,10 @@ const menu = [
                 accelerator: 'Ctrl+W'
             }
         ]
+    },
+    {
+        label: 'About',
+        click: createNewWindow
     }
 ]
 
