@@ -39,7 +39,7 @@ const menu = [
             {
                 label: 'Quit',
                 click: () => app.quit(),
-                accellerator: 'Ctrl+W'
+                accelerator: 'Ctrl+W'
             }
         ]
     }
