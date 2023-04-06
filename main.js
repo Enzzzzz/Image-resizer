@@ -4,7 +4,7 @@ const fs = require('fs')
 const resizeImg = require('resize-img')
 const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron')
 
-//const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV !== 'production';
 const isWin = process.platform === 'win32'
 
 let mainWindow
@@ -24,9 +24,6 @@ function createMainWindow() {
 
     mainWindow.loadFile(path.join(__dirname, './render/index.html'));
 
-    // if (isDev) {
-    //     mainWindow.webContents.openDevTools();
-    //   }
 }
 
 // NEW WINDOW

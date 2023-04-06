@@ -1,4 +1,6 @@
 const form = document.querySelector('#img-form')
+const selectbox = document.querySelector('#select-box')
+const imgselect = document.querySelector('#image-selected')
 const img = document.querySelector('#img')
 const outputPath = document.querySelector('#output-path')
 const filename = document.querySelector('#filename')
@@ -13,6 +15,7 @@ function discordPreset(e) {
 
 function loadImage(e) {
   const file = e.target.files[0]
+  
 
   if(!isFileImage(file)) {
     alertError('Selecione uma Imagem (Gif, PNG, JPEG).')
@@ -29,6 +32,8 @@ function loadImage(e) {
     heightImput.value = this.height
   }
 
+  console.log(selectbox)
+  imgselect.src = file.path
   form.style.display = 'block'
   filename.innerText = file.name
   outputPath.innerText = path.join(os.homedir(), 'YulbotResizer')
