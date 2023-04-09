@@ -33,6 +33,7 @@ function loadImage(e) {
   }
 
   console.log(selectbox)
+  selectbox.style.visibility = 'hidden'
   imgselect.src = file.path
   form.style.display = 'block'
   filename.innerText = file.name

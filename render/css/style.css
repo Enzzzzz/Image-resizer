@@ -817,6 +817,10 @@ video {
   width: 0.5rem;
 }
 
+.w-56 {
+  width: 14rem;
+}
+
 .w-64 {
   width: 16rem;
 }
@@ -827,18 +831,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-32 {
-  width: 8rem;
-}
-
-.w-5 {
-  width: 1.25rem;
-}
-
-.w-56 {
-  width: 14rem;
 }
 
 .max-w-xl {
