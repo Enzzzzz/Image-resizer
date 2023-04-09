@@ -49,7 +49,7 @@ function sendImage(e) {
   const imgPath = img.files[0].path
 
   if(!img.files[0]) {
-    alertError('Selecione uma Imagem (Gif, PNG, JPEG).')
+    alertError('Selecione uma Imagem (PNG, JPEG).')
     return
   }
 
@@ -72,7 +72,7 @@ ipcRenderer.on('image:done', () => {
 
 //Check file type
 function  isFileImage(file) {
-  const acceptedImageTypes = ['image/gif', 'image/png', 'image/jpeg']
+  const acceptedImageTypes = ['image/png', 'image/jpeg']
   return file && acceptedImageTypes.includes(file['type'])
 }
 
